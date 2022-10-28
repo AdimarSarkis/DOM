@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Selecionar Elementos #04</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+
+<body class="conteudo exercicio">
+    <div>
+        <p>Início</p>
+    </div>
+    <div>
+        <ul>
+            <li>Pedro</li>
+            <li>Ana</li>
+            <li>Bia</li>
+        </ul>
+    </div>
+    <div>
+        <p>Fim</p>
+    </div>
+    <script>
+        function log(){
+            console.log(this)
+        }
+
+        HTMLCollection.prototype.log = log
+        HTMLElement.prototype.log = log
+        NodeList.prototype.log = log
+        Node.prototype.log = log
+
+        const lista = document.querySelector('div ul')
+        lista.parentNode.log() // resultado é a div pai da ul
+        lista.childNodes.log() // resulta nos filhos (os li), traz os espaços entre li
+
+        const primeiro = lista.firstChild // é um texto por causa do espaço
+        primeiro.log()
+        primeiro.nextSibling.log()//pega o irmão seguite mais proximo,nesse caso o primeiro li
+        
+        const ultimo = lista.lastChild
+        ultimo.log()
+        ultimo.previousSibling.log()//pega o irmão anterior mais proximo,nesse caso o ultimo li
+
+        lista.children.log() //pega somente os li sem os textos causados pelo espaço entre tag
+        // vem como HTMLCollection
+        lista.firstElementChild.log() // traz o primeira tag da lista
+        lista.lastElementChild.log() // traz a ultima tag criada da lista
+        lista.parentNode.previousSibling.log() // pega o irmão anterior do pai da ul
+        // nesse caso a div inicio
+        lista.parentNode.nextSibling.log() //pega o irmão posterior do pai da ul
+        // nesse caso a div fim
+
+        // melhor pegar logo o que quer, não toda essa arvore complexa
+        document.querySelectorAll('div ul li').log()
+    </script>
+</body>
+
+</html>

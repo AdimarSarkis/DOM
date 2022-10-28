@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Acessando Atributos #02</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+</head>
+
+<body class='conteudo exercicio'>
+    <div>
+        <label for="compras">Compras</label>
+        <ul id="compras" destino='escritório' data-urgencia="5">
+            <li>Café</li>
+            <li>Água</li>
+            <li>Copo Descartável</li>
+        </ul>
+    </div>
+    <script>
+        const lista = document.querySelector('div ul[destino="escritório"]')
+        // const lista = document.querySelector('#compras')
+        console.log("Elemento il..................")
+        console.log("childNodes", lista.childNodes) // pega os filhos
+        console.log("destino", lista.destino) // undefined pois é um atributo personalizado
+        console.log("getAttribute", lista.getAttribute("destino"))
+        console.log("hasAttribute", lista.hasAttribute("destino")) // verifica se se há esse atributo
+        lista.setAttribute('destino','empresa') // alterou o valor o atributo destino para empresa
+        lista.setAttribute('status', 'aberto') // vai criar esse atributo com esse valor
+        lista.removeAttribute('destino')
+        console.log(lista.dataset)
+        lista.dataset.urgencia = 4
+        console.log(lista.getAttribute('data-urgencia'))
+
+        // CUIDADO
+        const label = document.querySelector('label')
+        console.log(label.for)
+        console.log(label.htmlFor)
+        console.log(label.getAttribute('for'))
+    </script>
+</body>
+
+</html>
